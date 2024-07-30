@@ -192,6 +192,7 @@ $end_token:expr
     };
 }
 
+/// Lexes the given Javascript expression into a Vec of tokens.
 pub fn lex(expr: &str) -> Result<Vec<Token>, LexerError> {
     if expr.trim().is_empty() {
         return Err(LexerError::UnexpectedEndOfInput);

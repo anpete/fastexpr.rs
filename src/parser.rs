@@ -143,6 +143,7 @@ macro_rules! match_token {
     };
 }
 
+/// Parses a JavaScript expression. Returns an AST on success or a ParserError on failure.
 pub fn parse(expression: &str) -> Result<Expr, ParserError> {
     let tokens = lex(expression)?;
     let mut pos: usize = 0;
