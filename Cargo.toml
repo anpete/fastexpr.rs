@@ -6,6 +6,7 @@ description = "A tiny, fast Javascript expression parser"
 keywords = ["expression", "parser", "javascript", "js", "lexer"]
 categories = ["parsing", "algorithms", "web-programming"]
 edition = "2021"
+license = "MIT"
 
 [dependencies]
 regex = "1.10.5"
