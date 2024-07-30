@@ -1,6 +1,6 @@
 [package]
 name = "fastexpr-rs"
-version = "1.0.0"
+version = "1.0.1"
 authors = ["Andrew Peters <anpete@protonmail.com>"]
 description = "A tiny, fast Javascript expression parser"
 keywords = ["expression", "parser", "javascript", "js", "lexer"]
@@ -9,8 +9,8 @@ edition = "2021"
 license = "MIT"
 
 [dependencies]
-regex = "1.10.5"
 num-bigint = "0.4.6"
-lazy_static = "1.5.0"
-insta = "1.39.0"
 unicode-id-start = "1.2.0"
+
+[dev-dependencies]
+insta = "1.39.0"
