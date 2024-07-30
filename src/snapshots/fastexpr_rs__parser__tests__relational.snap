@@ -1,0 +1,67 @@
+---
+source: src/parser.rs
+expression: "vec![parse(\"123 < foo.bar\").unwrap(), parse(\"123 > 456\").unwrap(),\n    parse(\"123 <= \\\"abc\\\"\").unwrap(), parse(\"bar >= 456\").unwrap()]"
+---
+[
+    Binary {
+        left: Literal {
+            token: Number(
+                123.0,
+            ),
+        },
+        operator: Lt,
+        right: Member {
+            computed: false,
+            object: Identifier {
+                token: Identifier(
+                    "foo",
+                ),
+            },
+            property: Identifier {
+                token: Identifier(
+                    "bar",
+                ),
+            },
+            optional: false,
+        },
+    },
+    Binary {
+        left: Literal {
+            token: Number(
+                123.0,
+            ),
+        },
+        operator: Gt,
+        right: Literal {
+            token: Number(
+                456.0,
+            ),
+        },
+    },
+    Binary {
+        left: Literal {
+            token: Number(
+                123.0,
+            ),
+        },
+        operator: LtEq,
+        right: Literal {
+            token: String(
+                "abc",
+            ),
+        },
+    },
+    Binary {
+        left: Identifier {
+            token: Identifier(
+                "bar",
+            ),
+        },
+        operator: GtEq,
+        right: Literal {
+            token: Number(
+                456.0,
+            ),
+        },
+    },
+]

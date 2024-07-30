@@ -1,0 +1,21 @@
+---
+source: src/lexer.rs
+expression: "lex(\"true false null undefined typeof void in instanceof new super await this\")"
+---
+Ok(
+    [
+        True,
+        False,
+        Null,
+        Undefined,
+        Typeof,
+        Void,
+        In,
+        InstanceOf,
+        New,
+        Super,
+        Await,
+        This,
+        Eof,
+    ],
+)

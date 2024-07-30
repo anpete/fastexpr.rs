@@ -1,0 +1,16 @@
+---
+source: src/lexer.rs
+expression: "lex(\"= += -= *= /= %= **=\")"
+---
+Ok(
+    [
+        Eq,
+        PlusEq,
+        MinusEq,
+        StarEq,
+        SlashEq,
+        PercentEq,
+        StarStarEq,
+        Eof,
+    ],
+)

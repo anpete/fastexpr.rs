@@ -1,0 +1,15 @@
+---
+source: src/lexer.rs
+expression: "lex(\"+ - * / ** %\")"
+---
+Ok(
+    [
+        Plus,
+        Minus,
+        Star,
+        Slash,
+        StarStar,
+        Percent,
+        Eof,
+    ],
+)

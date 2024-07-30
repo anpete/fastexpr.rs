@@ -1,0 +1,16 @@
+---
+source: src/lexer.rs
+expression: "lex(\"~ & | ^ << >> >>>\")"
+---
+Ok(
+    [
+        Tilde,
+        And,
+        Pipe,
+        Caret,
+        LtLt,
+        GtGt,
+        GtGtGt,
+        Eof,
+    ],
+)

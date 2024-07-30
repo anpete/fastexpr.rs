@@ -1,0 +1,19 @@
+---
+source: src/parser.rs
+expression: "vec![parse(\"123 | 456\").unwrap()]"
+---
+[
+    Binary {
+        left: Literal {
+            token: Number(
+                123.0,
+            ),
+        },
+        operator: Pipe,
+        right: Literal {
+            token: Number(
+                456.0,
+            ),
+        },
+    },
+]

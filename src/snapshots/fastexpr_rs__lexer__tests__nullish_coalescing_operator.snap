@@ -1,0 +1,10 @@
+---
+source: src/lexer.rs
+expression: "lex(\"??\")"
+---
+Ok(
+    [
+        QuestionQuestion,
+        Eof,
+    ],
+)

@@ -1,0 +1,88 @@
+---
+source: src/parser.rs
+expression: "vec![parse(\"foo()\").unwrap(), parse(\"foo.bar()\").unwrap(),\n    parse(\"foo.bar()[baz?.qux()]\").unwrap(), parse(\"foo(12, abc)\").unwrap()]"
+---
+[
+    Call {
+        callee: Identifier {
+            token: Identifier(
+                "foo",
+            ),
+        },
+        arguments: [],
+    },
+    Call {
+        callee: Member {
+            computed: false,
+            object: Identifier {
+                token: Identifier(
+                    "foo",
+                ),
+            },
+            property: Identifier {
+                token: Identifier(
+                    "bar",
+                ),
+            },
+            optional: false,
+        },
+        arguments: [],
+    },
+    Member {
+        computed: true,
+        object: Call {
+            callee: Member {
+                computed: false,
+                object: Identifier {
+                    token: Identifier(
+                        "foo",
+                    ),
+                },
+                property: Identifier {
+                    token: Identifier(
+                        "bar",
+                    ),
+                },
+                optional: false,
+            },
+            arguments: [],
+        },
+        property: Call {
+            callee: Member {
+                computed: false,
+                object: Identifier {
+                    token: Identifier(
+                        "baz",
+                    ),
+                },
+                property: Identifier {
+                    token: Identifier(
+                        "qux",
+                    ),
+                },
+                optional: true,
+            },
+            arguments: [],
+        },
+        optional: false,
+    },
+    Call {
+        callee: Identifier {
+            token: Identifier(
+                "foo",
+            ),
+        },
+        arguments: [
+            Literal {
+                token: Number(
+                    12.0,
+                ),
+            },
+            Identifier {
+                token: Identifier(
+                    "abc",
+                ),
+            },
+        ],
+    },
+]

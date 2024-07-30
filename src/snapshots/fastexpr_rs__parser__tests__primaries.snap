@@ -1,0 +1,600 @@
+---
+source: src/parser.rs
+expression: "vec![parse(\"false\").unwrap(), parse(\"true\").unwrap(), parse(\"null\").unwrap(),\n    parse(\"undefined\").unwrap(), parse(\"this\").unwrap(),\n    parse(\"super\").unwrap(), parse(\"123\").unwrap(), parse(\"'abc'\").unwrap(),\n    parse(\"/foo/\").unwrap(), parse(\"(123)\").unwrap(), parse(\"[123]\").unwrap(),\n    parse(\"[123,]\").unwrap(), parse(\"[123, 456]\").unwrap(),\n    parse(\"[]\").unwrap(), parse(\"[_, al]\").unwrap(), parse(\"{}\").unwrap(),\n    parse(\"{foo}\").unwrap(), parse(\"{foo, bar}\").unwrap(),\n    parse(\"{foo: 123}\").unwrap(), parse(\"{1: \\\"foo\\\"}\").unwrap(),\n    parse(\"{\\\"foo:bar\\\": 42}\").unwrap(), parse(\"{...foo}\").unwrap(),\n    parse(\"{foo: {bar} }\").unwrap(),\n    parse(\"{ album: a.title, artist: ar.name, track: t.name }\").unwrap(),\n    parse(\"``\").unwrap(), parse(\"`abc`\").unwrap(), parse(\"`${foo}`\").unwrap(),\n    parse(\"`$`\").unwrap(), parse(\"`\\\\${`\").unwrap(),\n    parse(\"`${ `a${b}c` }`\").unwrap(), parse(\"tag`foo`\").unwrap(),\n    parse(\"sql`select * from table`\").unwrap(),\n    parse(\"`${{ $id }}`\").unwrap(), parse(\"`${ { id: { } } }`\").unwrap(),\n    parse(\"sql``.f\").unwrap(), parse(\"{ a: `${a.title}!` }\").unwrap()]"
+---
+[
+    Literal {
+        token: False,
+    },
+    Literal {
+        token: True,
+    },
+    Literal {
+        token: Null,
+    },
+    Literal {
+        token: Undefined,
+    },
+    Literal {
+        token: This,
+    },
+    Literal {
+        token: Super,
+    },
+    Literal {
+        token: Number(
+            123.0,
+        ),
+    },
+    Literal {
+        token: String(
+            "abc",
+        ),
+    },
+    Literal {
+        token: Regex(
+            "foo",
+            None,
+        ),
+    },
+    Literal {
+        token: Number(
+            123.0,
+        ),
+    },
+    Array {
+        elements: [
+            Literal {
+                token: Number(
+                    123.0,
+                ),
+            },
+        ],
+    },
+    Array {
+        elements: [
+            Literal {
+                token: Number(
+                    123.0,
+                ),
+            },
+        ],
+    },
+    Array {
+        elements: [
+            Literal {
+                token: Number(
+                    123.0,
+                ),
+            },
+            Literal {
+                token: Number(
+                    456.0,
+                ),
+            },
+        ],
+    },
+    Array {
+        elements: [],
+    },
+    Array {
+        elements: [
+            Identifier {
+                token: Identifier(
+                    "_",
+                ),
+            },
+            Identifier {
+                token: Identifier(
+                    "al",
+                ),
+            },
+        ],
+    },
+    Object {
+        properties: [],
+    },
+    Object {
+        properties: [
+            Property {
+                computed: false,
+                key: Identifier {
+                    token: Identifier(
+                        "foo",
+                    ),
+                },
+                shorthand: true,
+                value: None,
+            },
+        ],
+    },
+    Object {
+        properties: [
+            Property {
+                computed: false,
+                key: Identifier {
+                    token: Identifier(
+                        "foo",
+                    ),
+                },
+                shorthand: true,
+                value: None,
+            },
+            Property {
+                computed: false,
+                key: Identifier {
+                    token: Identifier(
+                        "bar",
+                    ),
+                },
+                shorthand: true,
+                value: None,
+            },
+        ],
+    },
+    Object {
+        properties: [
+            Property {
+                computed: false,
+                key: Identifier {
+                    token: Identifier(
+                        "foo",
+                    ),
+                },
+                shorthand: false,
+                value: Some(
+                    Literal {
+                        token: Number(
+                            123.0,
+                        ),
+                    },
+                ),
+            },
+        ],
+    },
+    Object {
+        properties: [
+            Property {
+                computed: false,
+                key: Literal {
+                    token: Number(
+                        1.0,
+                    ),
+                },
+                shorthand: false,
+                value: Some(
+                    Literal {
+                        token: String(
+                            "foo",
+                        ),
+                    },
+                ),
+            },
+        ],
+    },
+    Object {
+        properties: [
+            Property {
+                computed: false,
+                key: Literal {
+                    token: String(
+                        "foo:bar",
+                    ),
+                },
+                shorthand: false,
+                value: Some(
+                    Literal {
+                        token: Number(
+                            42.0,
+                        ),
+                    },
+                ),
+            },
+        ],
+    },
+    Object {
+        properties: [
+            Spread {
+                expr: Identifier {
+                    token: Identifier(
+                        "foo",
+                    ),
+                },
+            },
+        ],
+    },
+    Object {
+        properties: [
+            Property {
+                computed: false,
+                key: Identifier {
+                    token: Identifier(
+                        "foo",
+                    ),
+                },
+                shorthand: false,
+                value: Some(
+                    Object {
+                        properties: [
+                            Property {
+                                computed: false,
+                                key: Identifier {
+                                    token: Identifier(
+                                        "bar",
+                                    ),
+                                },
+                                shorthand: true,
+                                value: None,
+                            },
+                        ],
+                    },
+                ),
+            },
+        ],
+    },
+    Object {
+        properties: [
+            Property {
+                computed: false,
+                key: Identifier {
+                    token: Identifier(
+                        "album",
+                    ),
+                },
+                shorthand: false,
+                value: Some(
+                    Member {
+                        computed: false,
+                        object: Identifier {
+                            token: Identifier(
+                                "a",
+                            ),
+                        },
+                        property: Identifier {
+                            token: Identifier(
+                                "title",
+                            ),
+                        },
+                        optional: false,
+                    },
+                ),
+            },
+            Property {
+                computed: false,
+                key: Identifier {
+                    token: Identifier(
+                        "artist",
+                    ),
+                },
+                shorthand: false,
+                value: Some(
+                    Member {
+                        computed: false,
+                        object: Identifier {
+                            token: Identifier(
+                                "ar",
+                            ),
+                        },
+                        property: Identifier {
+                            token: Identifier(
+                                "name",
+                            ),
+                        },
+                        optional: false,
+                    },
+                ),
+            },
+            Property {
+                computed: false,
+                key: Identifier {
+                    token: Identifier(
+                        "track",
+                    ),
+                },
+                shorthand: false,
+                value: Some(
+                    Member {
+                        computed: false,
+                        object: Identifier {
+                            token: Identifier(
+                                "t",
+                            ),
+                        },
+                        property: Identifier {
+                            token: Identifier(
+                                "name",
+                            ),
+                        },
+                        optional: false,
+                    },
+                ),
+            },
+        ],
+    },
+    TemplateLiteral {
+        quasis: [
+            TemplateString {
+                token: String(
+                    "",
+                ),
+                tail: true,
+            },
+        ],
+        expressions: [],
+    },
+    TemplateLiteral {
+        quasis: [
+            TemplateString {
+                token: String(
+                    "abc",
+                ),
+                tail: true,
+            },
+        ],
+        expressions: [],
+    },
+    TemplateLiteral {
+        quasis: [
+            TemplateString {
+                token: String(
+                    "",
+                ),
+                tail: false,
+            },
+            TemplateString {
+                token: String(
+                    "",
+                ),
+                tail: true,
+            },
+        ],
+        expressions: [
+            Identifier {
+                token: Identifier(
+                    "foo",
+                ),
+            },
+        ],
+    },
+    TemplateLiteral {
+        quasis: [
+            TemplateString {
+                token: String(
+                    "$",
+                ),
+                tail: true,
+            },
+        ],
+        expressions: [],
+    },
+    TemplateLiteral {
+        quasis: [
+            TemplateString {
+                token: String(
+                    "${",
+                ),
+                tail: true,
+            },
+        ],
+        expressions: [],
+    },
+    TemplateLiteral {
+        quasis: [
+            TemplateString {
+                token: String(
+                    "",
+                ),
+                tail: false,
+            },
+            TemplateString {
+                token: String(
+                    "",
+                ),
+                tail: true,
+            },
+        ],
+        expressions: [
+            TemplateLiteral {
+                quasis: [
+                    TemplateString {
+                        token: String(
+                            "a",
+                        ),
+                        tail: false,
+                    },
+                    TemplateString {
+                        token: String(
+                            "c",
+                        ),
+                        tail: true,
+                    },
+                ],
+                expressions: [
+                    Identifier {
+                        token: Identifier(
+                            "b",
+                        ),
+                    },
+                ],
+            },
+        ],
+    },
+    TaggedTemplate {
+        tag: Identifier {
+            token: Identifier(
+                "tag",
+            ),
+        },
+        quasi: TemplateLiteral {
+            quasis: [
+                TemplateString {
+                    token: String(
+                        "foo",
+                    ),
+                    tail: true,
+                },
+            ],
+            expressions: [],
+        },
+    },
+    TaggedTemplate {
+        tag: Identifier {
+            token: Identifier(
+                "sql",
+            ),
+        },
+        quasi: TemplateLiteral {
+            quasis: [
+                TemplateString {
+                    token: String(
+                        "select * from table",
+                    ),
+                    tail: true,
+                },
+            ],
+            expressions: [],
+        },
+    },
+    TemplateLiteral {
+        quasis: [
+            TemplateString {
+                token: String(
+                    "",
+                ),
+                tail: false,
+            },
+            TemplateString {
+                token: String(
+                    "",
+                ),
+                tail: true,
+            },
+        ],
+        expressions: [
+            Object {
+                properties: [
+                    Property {
+                        computed: false,
+                        key: Identifier {
+                            token: Identifier(
+                                "$id",
+                            ),
+                        },
+                        shorthand: true,
+                        value: None,
+                    },
+                ],
+            },
+        ],
+    },
+    TemplateLiteral {
+        quasis: [
+            TemplateString {
+                token: String(
+                    "",
+                ),
+                tail: false,
+            },
+            TemplateString {
+                token: String(
+                    "",
+                ),
+                tail: true,
+            },
+        ],
+        expressions: [
+            Object {
+                properties: [
+                    Property {
+                        computed: false,
+                        key: Identifier {
+                            token: Identifier(
+                                "id",
+                            ),
+                        },
+                        shorthand: false,
+                        value: Some(
+                            Object {
+                                properties: [],
+                            },
+                        ),
+                    },
+                ],
+            },
+        ],
+    },
+    Member {
+        computed: false,
+        object: TaggedTemplate {
+            tag: Identifier {
+                token: Identifier(
+                    "sql",
+                ),
+            },
+            quasi: TemplateLiteral {
+                quasis: [
+                    TemplateString {
+                        token: String(
+                            "",
+                        ),
+                        tail: true,
+                    },
+                ],
+                expressions: [],
+            },
+        },
+        property: Identifier {
+            token: Identifier(
+                "f",
+            ),
+        },
+        optional: false,
+    },
+    Object {
+        properties: [
+            Property {
+                computed: false,
+                key: Identifier {
+                    token: Identifier(
+                        "a",
+                    ),
+                },
+                shorthand: false,
+                value: Some(
+                    TemplateLiteral {
+                        quasis: [
+                            TemplateString {
+                                token: String(
+                                    "",
+                                ),
+                                tail: false,
+                            },
+                            TemplateString {
+                                token: String(
+                                    "!",
+                                ),
+                                tail: true,
+                            },
+                        ],
+                        expressions: [
+                            Member {
+                                computed: false,
+                                object: Identifier {
+                                    token: Identifier(
+                                        "a",
+                                    ),
+                                },
+                                property: Identifier {
+                                    token: Identifier(
+                                        "title",
+                                    ),
+                                },
+                                optional: false,
+                            },
+                        ],
+                    },
+                ),
+            },
+        ],
+    },
+]

@@ -1,0 +1,54 @@
+---
+source: src/lexer.rs
+expression: "lex(r#\" \"\" '' \"foo\" 'bar' \"foo\\\"bar\" 'bar\\'foo' \"foo\\nbar\" 'bar\\tfoo' \"\\x00\" '\\x58' \"😀\"\n    '\\u{1F600}' \"\\u1234\" \"\\u{0}\" \"\\u{0}\" \"#)"
+---
+Ok(
+    [
+        String(
+            "",
+        ),
+        String(
+            "",
+        ),
+        String(
+            "foo",
+        ),
+        String(
+            "bar",
+        ),
+        String(
+            "foo\"bar",
+        ),
+        String(
+            "bar'foo",
+        ),
+        String(
+            "foo\nbar",
+        ),
+        String(
+            "bar\tfoo",
+        ),
+        String(
+            "\0",
+        ),
+        String(
+            "X",
+        ),
+        String(
+            "😀",
+        ),
+        String(
+            "😀",
+        ),
+        String(
+            "ሴ",
+        ),
+        String(
+            "\0",
+        ),
+        String(
+            "\0",
+        ),
+        Eof,
+    ],
+)

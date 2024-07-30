@@ -1,0 +1,40 @@
+---
+source: src/parser.rs
+expression: "vec![parse(\"123 && 456\").unwrap(), parse(\"foo || bar && baz\").unwrap()]"
+---
+[
+    Binary {
+        left: Literal {
+            token: Number(
+                123.0,
+            ),
+        },
+        operator: AndAnd,
+        right: Literal {
+            token: Number(
+                456.0,
+            ),
+        },
+    },
+    Binary {
+        left: Identifier {
+            token: Identifier(
+                "foo",
+            ),
+        },
+        operator: PipePipe,
+        right: Binary {
+            left: Identifier {
+                token: Identifier(
+                    "bar",
+                ),
+            },
+            operator: AndAnd,
+            right: Identifier {
+                token: Identifier(
+                    "baz",
+                ),
+            },
+        },
+    },
+]

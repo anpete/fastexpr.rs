@@ -1,0 +1,78 @@
+---
+source: src/parser.rs
+expression: "vec![parse(\"++foo\").unwrap(), parse(\"--foo\").unwrap(),\n    parse(\"void 0\").unwrap(), parse(\"typeof foo\").unwrap(),\n    parse(\"await obj[key]\").unwrap(), parse(\"delete obj[key]\").unwrap()]"
+---
+[
+    Unary {
+        operator: PlusPlus,
+        argument: Identifier {
+            token: Identifier(
+                "foo",
+            ),
+        },
+        prefix: true,
+    },
+    Unary {
+        operator: MinusMinus,
+        argument: Identifier {
+            token: Identifier(
+                "foo",
+            ),
+        },
+        prefix: true,
+    },
+    Unary {
+        operator: Void,
+        argument: Literal {
+            token: Number(
+                0.0,
+            ),
+        },
+        prefix: true,
+    },
+    Unary {
+        operator: Typeof,
+        argument: Identifier {
+            token: Identifier(
+                "foo",
+            ),
+        },
+        prefix: true,
+    },
+    Unary {
+        operator: Await,
+        argument: Member {
+            computed: true,
+            object: Identifier {
+                token: Identifier(
+                    "obj",
+                ),
+            },
+            property: Identifier {
+                token: Identifier(
+                    "key",
+                ),
+            },
+            optional: false,
+        },
+        prefix: true,
+    },
+    Unary {
+        operator: Delete,
+        argument: Member {
+            computed: true,
+            object: Identifier {
+                token: Identifier(
+                    "obj",
+                ),
+            },
+            property: Identifier {
+                token: Identifier(
+                    "key",
+                ),
+            },
+            optional: false,
+        },
+        prefix: true,
+    },
+]

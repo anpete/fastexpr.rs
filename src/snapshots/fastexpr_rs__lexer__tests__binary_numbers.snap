@@ -1,0 +1,29 @@
+---
+source: src/lexer.rs
+expression: "lex(\"0b0 0b1 0B1111 -0b01111 +0b10101010 0b0101n\")"
+---
+Ok(
+    [
+        Number(
+            0.0,
+        ),
+        Number(
+            1.0,
+        ),
+        Number(
+            15.0,
+        ),
+        Minus,
+        Number(
+            15.0,
+        ),
+        Plus,
+        Number(
+            170.0,
+        ),
+        BigInt(
+            5,
+        ),
+        Eof,
+    ],
+)

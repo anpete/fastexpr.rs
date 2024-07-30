@@ -1,0 +1,52 @@
+---
+source: src/parser.rs
+expression: "vec![parse(\"foo ? bar : baz\").unwrap(),\n    parse(\"foo ? bar : baz ? qux : quux\").unwrap()]"
+---
+[
+    Conditional {
+        test: Identifier {
+            token: Identifier(
+                "foo",
+            ),
+        },
+        consequent: Identifier {
+            token: Identifier(
+                "bar",
+            ),
+        },
+        alternate: Identifier {
+            token: Identifier(
+                "baz",
+            ),
+        },
+    },
+    Conditional {
+        test: Identifier {
+            token: Identifier(
+                "foo",
+            ),
+        },
+        consequent: Identifier {
+            token: Identifier(
+                "bar",
+            ),
+        },
+        alternate: Conditional {
+            test: Identifier {
+                token: Identifier(
+                    "baz",
+                ),
+            },
+            consequent: Identifier {
+                token: Identifier(
+                    "qux",
+                ),
+            },
+            alternate: Identifier {
+                token: Identifier(
+                    "quux",
+                ),
+            },
+        },
+    },
+]

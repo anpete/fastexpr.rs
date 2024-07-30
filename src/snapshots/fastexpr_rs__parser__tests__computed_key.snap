@@ -1,0 +1,30 @@
+---
+source: src/parser.rs
+expression: "vec![parse(\"{[abc]: 123}\").unwrap()]"
+---
+[
+    Object {
+        properties: [
+            Property {
+                computed: true,
+                key: Array {
+                    elements: [
+                        Identifier {
+                            token: Identifier(
+                                "abc",
+                            ),
+                        },
+                    ],
+                },
+                shorthand: false,
+                value: Some(
+                    Literal {
+                        token: Number(
+                            123.0,
+                        ),
+                    },
+                ),
+            },
+        ],
+    },
+]

@@ -1,0 +1,60 @@
+---
+source: src/parser.rs
+expression: "vec![parse(\"+123\").unwrap(), parse(\"+abc\").unwrap(), parse(\"-abc\").unwrap(),\n    parse(\"!abc\").unwrap(), parse(\"-(foo)\").unwrap(), parse(\"~foo\").unwrap()]"
+---
+[
+    Unary {
+        operator: Plus,
+        argument: Literal {
+            token: Number(
+                123.0,
+            ),
+        },
+        prefix: true,
+    },
+    Unary {
+        operator: Plus,
+        argument: Identifier {
+            token: Identifier(
+                "abc",
+            ),
+        },
+        prefix: true,
+    },
+    Unary {
+        operator: Minus,
+        argument: Identifier {
+            token: Identifier(
+                "abc",
+            ),
+        },
+        prefix: true,
+    },
+    Unary {
+        operator: Not,
+        argument: Identifier {
+            token: Identifier(
+                "abc",
+            ),
+        },
+        prefix: true,
+    },
+    Unary {
+        operator: Minus,
+        argument: Identifier {
+            token: Identifier(
+                "foo",
+            ),
+        },
+        prefix: true,
+    },
+    Unary {
+        operator: Tilde,
+        argument: Identifier {
+            token: Identifier(
+                "foo",
+            ),
+        },
+        prefix: true,
+    },
+]

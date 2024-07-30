@@ -1,0 +1,62 @@
+---
+source: src/parser.rs
+expression: "vec![parse(\"a, 12, b\").unwrap(), parse(\"(a, 12)\").unwrap(),\n    parse(\"foo[a, b]\").unwrap()]"
+---
+[
+    Comma {
+        expressions: [
+            Identifier {
+                token: Identifier(
+                    "a",
+                ),
+            },
+            Literal {
+                token: Number(
+                    12.0,
+                ),
+            },
+            Identifier {
+                token: Identifier(
+                    "b",
+                ),
+            },
+        ],
+    },
+    Comma {
+        expressions: [
+            Identifier {
+                token: Identifier(
+                    "a",
+                ),
+            },
+            Literal {
+                token: Number(
+                    12.0,
+                ),
+            },
+        ],
+    },
+    Member {
+        computed: true,
+        object: Identifier {
+            token: Identifier(
+                "foo",
+            ),
+        },
+        property: Comma {
+            expressions: [
+                Identifier {
+                    token: Identifier(
+                        "a",
+                    ),
+                },
+                Identifier {
+                    token: Identifier(
+                        "b",
+                    ),
+                },
+            ],
+        },
+        optional: false,
+    },
+]

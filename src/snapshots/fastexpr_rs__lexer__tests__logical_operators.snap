@@ -1,0 +1,11 @@
+---
+source: src/lexer.rs
+expression: "lex(\"&& ||\")"
+---
+Ok(
+    [
+        AndAnd,
+        PipePipe,
+        Eof,
+    ],
+)

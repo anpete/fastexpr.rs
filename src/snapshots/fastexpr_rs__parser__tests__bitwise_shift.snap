@@ -1,0 +1,45 @@
+---
+source: src/parser.rs
+expression: "vec![parse(\"123 << 456\").unwrap(), parse(\"123 >> 456\").unwrap(),\n    parse(\"123 >>> 456\").unwrap()]"
+---
+[
+    Binary {
+        left: Literal {
+            token: Number(
+                123.0,
+            ),
+        },
+        operator: LtLt,
+        right: Literal {
+            token: Number(
+                456.0,
+            ),
+        },
+    },
+    Binary {
+        left: Literal {
+            token: Number(
+                123.0,
+            ),
+        },
+        operator: GtGt,
+        right: Literal {
+            token: Number(
+                456.0,
+            ),
+        },
+    },
+    Binary {
+        left: Literal {
+            token: Number(
+                123.0,
+            ),
+        },
+        operator: GtGtGt,
+        right: Literal {
+            token: Number(
+                456.0,
+            ),
+        },
+    },
+]

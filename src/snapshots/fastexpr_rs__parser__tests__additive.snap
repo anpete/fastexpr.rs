@@ -1,0 +1,40 @@
+---
+source: src/parser.rs
+expression: "vec![parse(\"123 + 456\").unwrap(), parse(\"123 - 456 * 789\").unwrap()]"
+---
+[
+    Binary {
+        left: Literal {
+            token: Number(
+                123.0,
+            ),
+        },
+        operator: Plus,
+        right: Literal {
+            token: Number(
+                456.0,
+            ),
+        },
+    },
+    Binary {
+        left: Literal {
+            token: Number(
+                123.0,
+            ),
+        },
+        operator: Minus,
+        right: Binary {
+            left: Literal {
+                token: Number(
+                    456.0,
+                ),
+            },
+            operator: Star,
+            right: Literal {
+                token: Number(
+                    789.0,
+                ),
+            },
+        },
+    },
+]

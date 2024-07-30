@@ -1,0 +1,33 @@
+---
+source: src/lexer.rs
+expression: "lex(\"foo $bar _baz $123 _456 $ _ abc123\")"
+---
+Ok(
+    [
+        Identifier(
+            "foo",
+        ),
+        Identifier(
+            "$bar",
+        ),
+        Identifier(
+            "_baz",
+        ),
+        Identifier(
+            "$123",
+        ),
+        Identifier(
+            "_456",
+        ),
+        Identifier(
+            "$",
+        ),
+        Identifier(
+            "_",
+        ),
+        Identifier(
+            "abc123",
+        ),
+        Eof,
+    ],
+)

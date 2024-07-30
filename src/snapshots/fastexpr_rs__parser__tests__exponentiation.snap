@@ -1,0 +1,27 @@
+---
+source: src/parser.rs
+expression: "vec![parse(\"123 ** 456 ** 789\").unwrap()]"
+---
+[
+    Binary {
+        left: Literal {
+            token: Number(
+                123.0,
+            ),
+        },
+        operator: StarStar,
+        right: Binary {
+            left: Literal {
+                token: Number(
+                    456.0,
+                ),
+            },
+            operator: StarStar,
+            right: Literal {
+                token: Number(
+                    789.0,
+                ),
+            },
+        },
+    },
+]

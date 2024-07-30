@@ -1,0 +1,138 @@
+---
+source: src/parser.rs
+expression: "vec![parse(\"a[10]\").unwrap(), parse(\"this.foo\").unwrap(),\n    parse(\"foo.bar.baz\").unwrap(), parse(\"foo?.bar?.baz\").unwrap(),\n    parse(\"foo[bar]\").unwrap(), parse(\"foo[bar]?.baz\").unwrap(),\n    parse(\"foo[(a, b)]\").unwrap()]"
+---
+[
+    Member {
+        computed: true,
+        object: Identifier {
+            token: Identifier(
+                "a",
+            ),
+        },
+        property: Literal {
+            token: Number(
+                10.0,
+            ),
+        },
+        optional: false,
+    },
+    Member {
+        computed: false,
+        object: Literal {
+            token: This,
+        },
+        property: Identifier {
+            token: Identifier(
+                "foo",
+            ),
+        },
+        optional: false,
+    },
+    Member {
+        computed: false,
+        object: Member {
+            computed: false,
+            object: Identifier {
+                token: Identifier(
+                    "foo",
+                ),
+            },
+            property: Identifier {
+                token: Identifier(
+                    "bar",
+                ),
+            },
+            optional: false,
+        },
+        property: Identifier {
+            token: Identifier(
+                "baz",
+            ),
+        },
+        optional: false,
+    },
+    Member {
+        computed: false,
+        object: Member {
+            computed: false,
+            object: Identifier {
+                token: Identifier(
+                    "foo",
+                ),
+            },
+            property: Identifier {
+                token: Identifier(
+                    "bar",
+                ),
+            },
+            optional: true,
+        },
+        property: Identifier {
+            token: Identifier(
+                "baz",
+            ),
+        },
+        optional: true,
+    },
+    Member {
+        computed: true,
+        object: Identifier {
+            token: Identifier(
+                "foo",
+            ),
+        },
+        property: Identifier {
+            token: Identifier(
+                "bar",
+            ),
+        },
+        optional: false,
+    },
+    Member {
+        computed: false,
+        object: Member {
+            computed: true,
+            object: Identifier {
+                token: Identifier(
+                    "foo",
+                ),
+            },
+            property: Identifier {
+                token: Identifier(
+                    "bar",
+                ),
+            },
+            optional: false,
+        },
+        property: Identifier {
+            token: Identifier(
+                "baz",
+            ),
+        },
+        optional: true,
+    },
+    Member {
+        computed: true,
+        object: Identifier {
+            token: Identifier(
+                "foo",
+            ),
+        },
+        property: Comma {
+            expressions: [
+                Identifier {
+                    token: Identifier(
+                        "a",
+                    ),
+                },
+                Identifier {
+                    token: Identifier(
+                        "b",
+                    ),
+                },
+            ],
+        },
+        optional: false,
+    },
+]

@@ -1,0 +1,48 @@
+---
+source: src/parser.rs
+expression: "vec![parse(\"foo(12,)\").unwrap(), parse(\"{foo,}\").unwrap(),\n    parse(\"(foo,)=>123\").unwrap()]"
+---
+[
+    Call {
+        callee: Identifier {
+            token: Identifier(
+                "foo",
+            ),
+        },
+        arguments: [
+            Literal {
+                token: Number(
+                    12.0,
+                ),
+            },
+        ],
+    },
+    Object {
+        properties: [
+            Property {
+                computed: false,
+                key: Identifier {
+                    token: Identifier(
+                        "foo",
+                    ),
+                },
+                shorthand: true,
+                value: None,
+            },
+        ],
+    },
+    ArrowFunction {
+        params: [
+            Identifier {
+                token: Identifier(
+                    "foo",
+                ),
+            },
+        ],
+        body: Literal {
+            token: Number(
+                123.0,
+            ),
+        },
+    },
+]

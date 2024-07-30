@@ -1,0 +1,17 @@
+---
+source: src/lexer.rs
+expression: "lex(\"== === != !== < > <= >=\")"
+---
+Ok(
+    [
+        EqEq,
+        EqEqEq,
+        NotEq,
+        NotEqEq,
+        Lt,
+        Gt,
+        LtEq,
+        GtEq,
+        Eof,
+    ],
+)

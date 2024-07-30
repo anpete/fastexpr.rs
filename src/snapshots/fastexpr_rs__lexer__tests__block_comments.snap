@@ -1,0 +1,33 @@
+---
+source: src/lexer.rs
+expression: "lex(\"1 /* foo */ 2 /* bar\\n\\nabc */ 3 /*** baz qux **/\n                            4 /*\\\\*/ 5 /*/*/ 6 /**/ 7 /* /*  \\\\*\\\\/ */ 8\")"
+---
+Ok(
+    [
+        Number(
+            1.0,
+        ),
+        Number(
+            2.0,
+        ),
+        Number(
+            3.0,
+        ),
+        Number(
+            4.0,
+        ),
+        Number(
+            5.0,
+        ),
+        Number(
+            6.0,
+        ),
+        Number(
+            7.0,
+        ),
+        Number(
+            8.0,
+        ),
+        Eof,
+    ],
+)

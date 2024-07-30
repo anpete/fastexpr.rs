@@ -1,0 +1,42 @@
+---
+source: src/parser.rs
+expression: "vec![parse(\"new Foo()\").unwrap(), parse(\"new Foo(123)\").unwrap(),\n    parse(\"new x(y)\").unwrap()]"
+---
+[
+    New {
+        callee: Identifier {
+            token: Identifier(
+                "Foo",
+            ),
+        },
+        arguments: [],
+    },
+    New {
+        callee: Identifier {
+            token: Identifier(
+                "Foo",
+            ),
+        },
+        arguments: [
+            Literal {
+                token: Number(
+                    123.0,
+                ),
+            },
+        ],
+    },
+    New {
+        callee: Identifier {
+            token: Identifier(
+                "x",
+            ),
+        },
+        arguments: [
+            Identifier {
+                token: Identifier(
+                    "y",
+                ),
+            },
+        ],
+    },
+]

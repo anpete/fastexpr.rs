@@ -1,0 +1,30 @@
+---
+source: src/lexer.rs
+expression: "lex(\"0b1_0_0 1_000_000 1.0e1_1 1_2.3_4 .55_5 0o7_7 0xf_f\")"
+---
+Ok(
+    [
+        Number(
+            4.0,
+        ),
+        Number(
+            1000000.0,
+        ),
+        Number(
+            100000000000.0,
+        ),
+        Number(
+            12.34,
+        ),
+        Number(
+            0.555,
+        ),
+        Number(
+            63.0,
+        ),
+        Number(
+            255.0,
+        ),
+        Eof,
+    ],
+)

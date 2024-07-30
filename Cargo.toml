@@ -1,0 +1,11 @@
+[package]
+name = "fastexpr-rs"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+regex = "1.10.5"
+num-bigint = "0.4.6"
+lazy_static = "1.5.0"
+insta = "1.39.0"
+unicode-id-start = "1.2.0"

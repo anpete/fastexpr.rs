@@ -1,0 +1,21 @@
+---
+source: src/lexer.rs
+expression: "lex(\", ; ( ) [ ] { } . ?. => ...\")"
+---
+Ok(
+    [
+        Comma,
+        Semicolon,
+        LParen,
+        RParen,
+        LBracket,
+        RBracket,
+        LBrace,
+        RBrace,
+        Dot,
+        QuestionDot,
+        EqGt,
+        DotDotDot,
+        Eof,
+    ],
+)

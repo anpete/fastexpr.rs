@@ -1,0 +1,67 @@
+---
+source: src/parser.rs
+expression: "vec![parse(\"123 == bar[12]\").unwrap(), parse(\"123 === 456\").unwrap(),\n    parse(\"123 != 456\").unwrap(), parse(\"123 !== 456\").unwrap()]"
+---
+[
+    Binary {
+        left: Literal {
+            token: Number(
+                123.0,
+            ),
+        },
+        operator: EqEq,
+        right: Member {
+            computed: true,
+            object: Identifier {
+                token: Identifier(
+                    "bar",
+                ),
+            },
+            property: Literal {
+                token: Number(
+                    12.0,
+                ),
+            },
+            optional: false,
+        },
+    },
+    Binary {
+        left: Literal {
+            token: Number(
+                123.0,
+            ),
+        },
+        operator: EqEqEq,
+        right: Literal {
+            token: Number(
+                456.0,
+            ),
+        },
+    },
+    Binary {
+        left: Literal {
+            token: Number(
+                123.0,
+            ),
+        },
+        operator: NotEq,
+        right: Literal {
+            token: Number(
+                456.0,
+            ),
+        },
+    },
+    Binary {
+        left: Literal {
+            token: Number(
+                123.0,
+            ),
+        },
+        operator: NotEqEq,
+        right: Literal {
+            token: Number(
+                456.0,
+            ),
+        },
+    },
+]

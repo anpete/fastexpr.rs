@@ -1,0 +1,30 @@
+---
+source: src/lexer.rs
+expression: "lex(r#\" /foo/, /o\\/o/, /fo\\[[/a\\]]a\\/]o\\\\/, /abc/gimsuy \"#)"
+---
+Ok(
+    [
+        Regex(
+            "foo",
+            None,
+        ),
+        Comma,
+        Regex(
+            "o\\/o",
+            None,
+        ),
+        Comma,
+        Regex(
+            "fo\\[[/a\\]]a\\/]o\\\\",
+            None,
+        ),
+        Comma,
+        Regex(
+            "abc",
+            Some(
+                "gimsuy",
+            ),
+        ),
+        Eof,
+    ],
+)

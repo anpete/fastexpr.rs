@@ -1,0 +1,15 @@
+---
+source: src/lexer.rs
+expression: "lex(\"a \\t\\n\\rb\")"
+---
+Ok(
+    [
+        Identifier(
+            "a",
+        ),
+        Identifier(
+            "b",
+        ),
+        Eof,
+    ],
+)

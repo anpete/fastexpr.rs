@@ -1,0 +1,176 @@
+---
+source: src/parser.rs
+expression: "vec![parse(\"(foo,baz) => bar\").unwrap(), parse(\"foo => bar\").unwrap(),\n    parse(\"() => a+b\").unwrap(), parse(\"(a, [b, _]) => a+b\").unwrap(),\n    parse(\"() => (a, b) => a+b\").unwrap(),\n    parse(\"([_, al]) => al.title\").unwrap(),\n    parse(\"(al,) => al.title\").unwrap()]"
+---
+[
+    ArrowFunction {
+        params: [
+            Identifier {
+                token: Identifier(
+                    "foo",
+                ),
+            },
+            Identifier {
+                token: Identifier(
+                    "baz",
+                ),
+            },
+        ],
+        body: Identifier {
+            token: Identifier(
+                "bar",
+            ),
+        },
+    },
+    ArrowFunction {
+        params: [
+            Identifier {
+                token: Identifier(
+                    "foo",
+                ),
+            },
+        ],
+        body: Identifier {
+            token: Identifier(
+                "bar",
+            ),
+        },
+    },
+    ArrowFunction {
+        params: [],
+        body: Binary {
+            left: Identifier {
+                token: Identifier(
+                    "a",
+                ),
+            },
+            operator: Plus,
+            right: Identifier {
+                token: Identifier(
+                    "b",
+                ),
+            },
+        },
+    },
+    ArrowFunction {
+        params: [
+            Identifier {
+                token: Identifier(
+                    "a",
+                ),
+            },
+            Array {
+                elements: [
+                    Identifier {
+                        token: Identifier(
+                            "b",
+                        ),
+                    },
+                    Identifier {
+                        token: Identifier(
+                            "_",
+                        ),
+                    },
+                ],
+            },
+        ],
+        body: Binary {
+            left: Identifier {
+                token: Identifier(
+                    "a",
+                ),
+            },
+            operator: Plus,
+            right: Identifier {
+                token: Identifier(
+                    "b",
+                ),
+            },
+        },
+    },
+    ArrowFunction {
+        params: [],
+        body: ArrowFunction {
+            params: [
+                Identifier {
+                    token: Identifier(
+                        "a",
+                    ),
+                },
+                Identifier {
+                    token: Identifier(
+                        "b",
+                    ),
+                },
+            ],
+            body: Binary {
+                left: Identifier {
+                    token: Identifier(
+                        "a",
+                    ),
+                },
+                operator: Plus,
+                right: Identifier {
+                    token: Identifier(
+                        "b",
+                    ),
+                },
+            },
+        },
+    },
+    ArrowFunction {
+        params: [
+            Array {
+                elements: [
+                    Identifier {
+                        token: Identifier(
+                            "_",
+                        ),
+                    },
+                    Identifier {
+                        token: Identifier(
+                            "al",
+                        ),
+                    },
+                ],
+            },
+        ],
+        body: Member {
+            computed: false,
+            object: Identifier {
+                token: Identifier(
+                    "al",
+                ),
+            },
+            property: Identifier {
+                token: Identifier(
+                    "title",
+                ),
+            },
+            optional: false,
+        },
+    },
+    ArrowFunction {
+        params: [
+            Identifier {
+                token: Identifier(
+                    "al",
+                ),
+            },
+        ],
+        body: Member {
+            computed: false,
+            object: Identifier {
+                token: Identifier(
+                    "al",
+                ),
+            },
+            property: Identifier {
+                token: Identifier(
+                    "title",
+                ),
+            },
+            optional: false,
+        },
+    },
+]

@@ -1,0 +1,57 @@
+---
+source: src/parser.rs
+expression: "vec![parse(\"123 / 456 * 789\").unwrap(),\n    parse(\"123 % (456 / abc.def)\").unwrap()]"
+---
+[
+    Binary {
+        left: Binary {
+            left: Literal {
+                token: Number(
+                    123.0,
+                ),
+            },
+            operator: Slash,
+            right: Literal {
+                token: Number(
+                    456.0,
+                ),
+            },
+        },
+        operator: Star,
+        right: Literal {
+            token: Number(
+                789.0,
+            ),
+        },
+    },
+    Binary {
+        left: Literal {
+            token: Number(
+                123.0,
+            ),
+        },
+        operator: Percent,
+        right: Binary {
+            left: Literal {
+                token: Number(
+                    456.0,
+                ),
+            },
+            operator: Slash,
+            right: Member {
+                computed: false,
+                object: Identifier {
+                    token: Identifier(
+                        "abc",
+                    ),
+                },
+                property: Identifier {
+                    token: Identifier(
+                        "def",
+                    ),
+                },
+                optional: false,
+            },
+        },
+    },
+]

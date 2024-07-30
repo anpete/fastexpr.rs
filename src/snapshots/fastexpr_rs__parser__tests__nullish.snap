@@ -1,0 +1,40 @@
+---
+source: src/parser.rs
+expression: "vec![parse(\"foo ?? bar\").unwrap(), parse(\"foo ?? bar ?? baz\").unwrap()]"
+---
+[
+    Binary {
+        left: Identifier {
+            token: Identifier(
+                "foo",
+            ),
+        },
+        operator: QuestionQuestion,
+        right: Identifier {
+            token: Identifier(
+                "bar",
+            ),
+        },
+    },
+    Binary {
+        left: Binary {
+            left: Identifier {
+                token: Identifier(
+                    "foo",
+                ),
+            },
+            operator: QuestionQuestion,
+            right: Identifier {
+                token: Identifier(
+                    "bar",
+                ),
+            },
+        },
+        operator: QuestionQuestion,
+        right: Identifier {
+            token: Identifier(
+                "baz",
+            ),
+        },
+    },
+]

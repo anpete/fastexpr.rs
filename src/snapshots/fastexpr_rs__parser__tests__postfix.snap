@@ -1,0 +1,24 @@
+---
+source: src/parser.rs
+expression: "vec![parse(\"foo++\").unwrap(), parse(\"abc--\").unwrap()]"
+---
+[
+    Unary {
+        operator: PlusPlus,
+        argument: Identifier {
+            token: Identifier(
+                "foo",
+            ),
+        },
+        prefix: false,
+    },
+    Unary {
+        operator: MinusMinus,
+        argument: Identifier {
+            token: Identifier(
+                "abc",
+            ),
+        },
+        prefix: false,
+    },
+]

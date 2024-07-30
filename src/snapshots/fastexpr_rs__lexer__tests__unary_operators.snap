@@ -1,0 +1,12 @@
+---
+source: src/lexer.rs
+expression: "lex(\"++ -- !\")"
+---
+Ok(
+    [
+        PlusPlus,
+        MinusMinus,
+        Not,
+        Eof,
+    ],
+)

@@ -1,0 +1,68 @@
+---
+source: src/parser.rs
+expression: "vec![parse(\"...foo\").unwrap(), parse(\"...foo.bar\").unwrap(),\n    parse(\"foo(...bar)\").unwrap(), parse(\"foo(...bar, ...baz)\").unwrap()]"
+---
+[
+    Spread {
+        expr: Identifier {
+            token: Identifier(
+                "foo",
+            ),
+        },
+    },
+    Spread {
+        expr: Member {
+            computed: false,
+            object: Identifier {
+                token: Identifier(
+                    "foo",
+                ),
+            },
+            property: Identifier {
+                token: Identifier(
+                    "bar",
+                ),
+            },
+            optional: false,
+        },
+    },
+    Call {
+        callee: Identifier {
+            token: Identifier(
+                "foo",
+            ),
+        },
+        arguments: [
+            Spread {
+                expr: Identifier {
+                    token: Identifier(
+                        "bar",
+                    ),
+                },
+            },
+        ],
+    },
+    Call {
+        callee: Identifier {
+            token: Identifier(
+                "foo",
+            ),
+        },
+        arguments: [
+            Spread {
+                expr: Identifier {
+                    token: Identifier(
+                        "bar",
+                    ),
+                },
+            },
+            Spread {
+                expr: Identifier {
+                    token: Identifier(
+                        "baz",
+                    ),
+                },
+            },
+        ],
+    },
+]
