@@ -1,5 +1,5 @@
-use crate::lexer::Token::*;
 use crate::lexer::{lex, LexerError, Token};
+use crate::lexer::Token::*;
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum Expr {
@@ -465,6 +465,20 @@ mod tests {
         ($expr:expr, $expected:expr) => {
             assert_eq!(parse($expr).unwrap(), parse($expected).unwrap())
         };
+    }
+
+    #[test]
+    fn usage() {
+        let result = parse("(s) => `hello from ${s}!`");
+
+        match result {
+            Ok(expr) => {
+                println!("{:#?}", expr);
+            }
+            Err(err) => {
+                println!("{:#?}", err);
+            }
+        }
     }
 
     #[test]

@@ -11,11 +11,51 @@ A blazingly fast, single-file, minimal dependency JavaScript expression parser, 
 Usage:
 
 ```rust
+let result = parse("(s) => `hello from ${s}!`");
 
+match result {
+    Ok(expr) => {
+        println!("{:#?}", expr);
+    }
+    Err(err) => {
+        println!("{:#?}", err);
+    }
+}
 ```
 
 which produces:
 
-```rust
-
+```
+ArrowFunction {
+    params: [
+        Identifier {
+            token: Identifier(
+                "s",
+            ),
+        },
+    ],
+    body: TemplateLiteral {
+        quasis: [
+            TemplateString {
+                token: String(
+                    "hello from ",
+                ),
+                tail: false,
+            },
+            TemplateString {
+                token: String(
+                    "!",
+                ),
+                tail: true,
+            },
+        ],
+        expressions: [
+            Identifier {
+                token: Identifier(
+                    "s",
+                ),
+            },
+        ],
+    },
+}
 ```
